@@ -31,7 +31,11 @@
 </table>
 <br>
 <br>
-<%= link_to 'Exportar Dados',csv_exportaMovimentacao_path, method: :get %>
+<div class="row">
+  <%= link_to 'Exportar Dados',csv_exportaMovimentacao_path, method: :get %>
+  <%= link_to 'Importar Dados',movimentacaos_create_by_csv_path, method: :get %>
+</div>
+
 <br>
 <br>
 

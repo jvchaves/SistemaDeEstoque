@@ -22,11 +22,9 @@ class MovimentacaosController < ApplicationController
     @estoques = CSV.parse(params[:csv].read,{col_sep:';',headers:true}) rescue nil
     @produtos = Produto.all
     @depositos = Armazenamento.all
-    @movimentacoes = Movimentacao.all
 
     if @estoques.present?
       @estoques.each do |estoque|
-        @movimentacao = Movimentacao.new
         @produto = @produtos.where(nome:estoque['Produto'].downcase).first
         @deposito = @depositos.where(nome:estoque['Nome do deposito'].downcase).first
         if @produto.nil?
@@ -37,20 +35,16 @@ class MovimentacaosController < ApplicationController
           @deposito = Armazenamento.create({nome:estoque['Nome do deposito'].downcase})
           @deposito.save
         end
-        if @movimentacoes.where("produto_id = ? and armazenamento_id = ? and tipo = ?",@produto.id.to_i,@deposito.id.to_i,estoque['Tipo de Movimentacao'].upcase).present?
-          @movimentacao = @movimentacoes.where("produto_id = ? and armazenamento_id = ? and tipo = ?",@produto.id.to_i,@deposito.id.to_i,estoque['Tipo de Movimentacao'].upcase).first
-          @movimentacao.quantidade = @movimentacao.quantidade + estoque['Quantidade'].to_i
+
+          @movimentacao = Movimentacao.new({produto_id: @produto.id, armazenamento_id: @deposito.id, tipo: estoque['Tipo de Movimentacao'].upcase, quantidade: estoque['Quantidade'].to_i, data_movimentacao: estoque['Data'].to_date})
           @movimentacao.save
-          # binding.pry
-        else
-          @movimentacao = Movimentacao.new({produto_id: @produto.id, armazenamento_id: @deposito.id, tipo: estoque['Tipo de Movimentacao'].upcase, quantidade: estoque['Quantidade'].to_i, data_movimentacao: estoque['    Data    ']})
-          @movimentacao.save
-        end
+
 
       end
+      flash[:notice] = "Importação Cadastrada com Sucesso!"
+      redirect_to "/movimentacaos/"
     end
 
-    # binding.pry
   end
   # POST /movimentacaos or /movimentacaos.json
   def create
