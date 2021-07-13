@@ -20,7 +20,7 @@
         <td><%= movimentacao.produto.nome rescue nil %></td>
         <td><%= movimentacao.armazenamento.nome rescue nil%></td>
         <td><%= movimentacao.tipo rescue nil%></td>
-        <td><%= l(movimentacao.created_at) %></td>
+        <td><%= l(movimentacao.data_movimentacao) %></td>
         <td><%= movimentacao.quantidade rescue nil%></td>
         <td><%= link_to 'Show', movimentacao %></td>
         <td><%= link_to 'Edit', edit_movimentacao_path(movimentacao) %></td>

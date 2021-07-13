@@ -7,7 +7,7 @@ class CsvController < ApplicationController
       @exportar = CSV.generate(col_sep: ';') do |csv|
         csv << cabecalho
         @movimentacoes.each do |movimentacao|
-          csv << [movimentacao.armazenamento.nome,movimentacao.created_at.strftime("%d/%m/%Y").to_date,movimentacao.tipo,movimentacao.produto.nome,movimentacao.quantidade]
+          csv << [movimentacao.armazenamento.nome,movimentacao.data_movimentacao.strftime("%d/%m/%Y").to_date,movimentacao.tipo,movimentacao.produto.nome,movimentacao.quantidade]
         end
       end
 

@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 2021_07_12_230219) do
   end
 
   create_table "movimentacaos", force: :cascade do |t|
-    t.integer "produto_id"
-    t.integer "armazenamento_id"
+    t.integer "produto_id", null: false
+    t.integer "armazenamento_id", null: false
     t.string "tipo"
     t.integer "quantidade"
+    t.datetime "data_movimentacao"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["armazenamento_id"], name: "index_movimentacaos_on_armazenamento_id"

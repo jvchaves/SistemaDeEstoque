@@ -5,7 +5,7 @@ class CreateMovimentacaos < ActiveRecord::Migration[6.1]
       t.references :armazenamento, null: false, foreign_key: true
       t.string :tipo
       t.integer :quantidade
-
+      t.datetime :data_movimentacao
       t.timestamps
     end
   end

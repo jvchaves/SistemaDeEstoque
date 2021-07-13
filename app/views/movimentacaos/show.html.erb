@@ -1,23 +1,26 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><% notice %></p>
 
 <p>
   <strong>Produto:</strong>
-  <%= @movimentacao.produto.nome %>
+  <%= @movimentacao.produto.nome rescue nil%>
 </p>
 
 <p>
   <strong>Armazenamento:</strong>
-  <%= @movimentacao.armazenamento.nome %>
+  <%= @movimentacao.armazenamento.nome rescue nil%>
 </p>
 
 <p>
   <strong>Tipo:</strong>
-  <%= @movimentacao.tipo %>
+  <%= @movimentacao.tipo rescue nil%>
 </p>
-
+<p>
+  <strong>Data de movimentação:</strong>
+  <%=@movimentacao.data_movimentacao rescue nil%>
+</p>
 <p>
   <strong>Quantidade:</strong>
-  <%= @movimentacao.quantidade %>
+  <%= @movimentacao.quantidade rescue nil%>
 </p>
 
 <%= link_to 'Edit', edit_movimentacao_path(@movimentacao) %> |
