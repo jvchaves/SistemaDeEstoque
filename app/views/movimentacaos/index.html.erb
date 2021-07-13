@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movimentacaos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Armazenamento</th>
+      <th>Tipo</th>
+      <th>Data da Movimentação</th>
+      <th>Quantidade</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimentacaos.each do |movimentacao| %>
+      <tr>
+        <td><%= movimentacao.produto.nome rescue nil %></td>
+        <td><%= movimentacao.armazenamento.nome rescue nil%></td>
+        <td><%= movimentacao.tipo rescue nil%></td>
+        <td><%= l(movimentacao.created_at) %></td>
+        <td><%= movimentacao.quantidade rescue nil%></td>
+        <td><%= link_to 'Show', movimentacao %></td>
+        <td><%= link_to 'Edit', edit_movimentacao_path(movimentacao) %></td>
+        <td><%= link_to 'Destroy', movimentacao, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
+<%= link_to 'Exportar Dados',csv_exportaMovimentacao_path, method: :get %>
+<br>
+<br>
+
+<%= link_to 'New Movimentacao', new_movimentacao_path %>

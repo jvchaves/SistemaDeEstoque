@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Produto:</strong>
+  <%= @movimentacao.produto.nome %>
+</p>
+
+<p>
+  <strong>Armazenamento:</strong>
+  <%= @movimentacao.armazenamento.nome %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @movimentacao.tipo %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @movimentacao.quantidade %>
+</p>
+
+<%= link_to 'Edit', edit_movimentacao_path(@movimentacao) %> |
+<%= link_to 'Back', movimentacaos_path %>
