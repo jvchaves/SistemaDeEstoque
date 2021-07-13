@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'csv/exportaMovimentacao'
   get 'movimentacaos/create_by_csv'
+  get 'movimentacaos/total_armazenado'
   post 'movimentacaos/create_by_csv'
   resources :movimentacaos
   resources :armazenamentos

@@ -13,22 +13,24 @@
 
   <div class="field">
     <%= form.label :produto_id %>
-    <%= form.text_field :produto_id %>
+    <%= form.text_field :produto_id, required: true%>
   </div>
 
   <div class="field">
     <%= form.label :armazenamento_id %>
-    <%= form.text_field :armazenamento_id %>
+    <%= form.text_field :armazenamento_id, required: true%>
   </div>
+
 
   <div class="field">
     <%= form.label :tipo %>
-    <%= form.text_field :tipo %>
+    <%= select_tag(:tipo, options_for_select([['ENTRADA', 'E'], ['SAIDA', 'S']]), required: true) %>
+    <%#= options_for_select() %>
   </div>
 
   <div class="field">
     <%= form.label :quantidade %>
-    <%= form.number_field :quantidade %>
+    <%= form.number_field :quantidade, required: true %>
   </div>
 
   <div class="actions">

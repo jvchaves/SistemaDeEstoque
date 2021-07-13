@@ -1,0 +1,17 @@
+<table class="table table-striped table-responsive">
+  <thead>
+    <th>Deposito</th>
+    <th>Produto</th>
+    <th>Quantidade</th>
+  </thead>
+  <tbody>
+  <%@movimentacoes.each do |movimentacao| %>
+  <%#binding.pry %>
+    <tr>
+      <td><%=movimentacao.armazenamento.nome %></td>
+      <td><%=movimentacao.produto.nome %></td>
+      <td><%=movimentacao.quantidade %></td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>
