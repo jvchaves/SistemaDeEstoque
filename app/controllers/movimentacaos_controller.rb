@@ -80,7 +80,7 @@ class MovimentacaosController < ApplicationController
     end
   end
   def total_armazenado
-  @movimentacoes = Movimentacao.joins(:produto).joins(:armazenamento).select('armazenamentos.nome,produtos.nome').group('armazenamentos.nome').group('produtos.nome').sum(:quantidade).to_a
+  @movimentacoes = Movimentacao.joins(:produto).joins(:armazenamento).select('armazenamentos.nome,produtos.nome').group('armazenamentos.nome').group('produtos.nome').order('sum(movimentacaos.quantidade) desc').sum(:quantidade).to_a
 
   end
   # PATCH/PUT /movimentacaos/1 or /movimentacaos/1.json
