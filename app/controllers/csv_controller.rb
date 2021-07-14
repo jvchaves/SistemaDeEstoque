@@ -3,7 +3,7 @@ class CsvController < ApplicationController
   def exportaMovimentacao
     @movimentacoes = Movimentacao.all
     if @movimentacoes.present?
-      cabecalho = ['Nome do deposito','Data','Tipo de Movimentacao','Produto','Quantidade']
+      cabecalho = ['Nome do deposito','Data','Tipo de movimentacao','Nome do produto','Quantidade do produto']
       @exportar = CSV.generate(col_sep: ';') do |csv|
         csv << cabecalho
         @movimentacoes.each do |movimentacao|

@@ -22,20 +22,19 @@ class MovimentacaosController < ApplicationController
     @estoques = CSV.parse(params[:csv].read,{col_sep:';',headers:true}) rescue nil
     @produtos = Produto.all
     @depositos = Armazenamento.all
-    binding.pry
     if @estoques.present?
       @estoques.each do |estoque|
-        @produto = @produtos.where(nome:estoque['Produto'].downcase).first
+        @produto = @produtos.where(nome:estoque['Nome do produto'].downcase).first
         @deposito = @depositos.where(nome:estoque['Nome do deposito'].downcase).first
         if @produto.nil?
-          @produto = Produto.create({nome:estoque['Produto'].downcase})
+          @produto = Produto.create({nome:estoque['Nome do produto'].downcase})
           @produto.save
         end
         if @deposito.nil?
           @deposito = Armazenamento.create({nome:estoque['Nome do deposito'].downcase})
           @deposito.save
         end
-          @movimentacao = Movimentacao.new({produto_id: @produto.id, armazenamento_id: @deposito.id, tipo: estoque['Tipo de Movimentacao'].upcase, quantidade: estoque['Quantidade'].to_i, data_movimentacao: estoque['Data'].to_date})
+          @movimentacao = Movimentacao.new({produto_id: @produto.id, armazenamento_id: @deposito.id, tipo: estoque['Tipo de movimentacao'].upcase, quantidade: estoque['Quantidade do produto'].to_i, data_movimentacao: estoque['Data'].to_date})
           @movimentacao.save
 
 
