@@ -14,12 +14,10 @@ class Movimentacao < ApplicationRecord
   end
   def verifica_estoque
     if self.tipo == "S"
-      # binding.pry
       estoque_total = Movimentacao.where("produto_id = ? AND armazenamento_id = ? AND tipo = 'E'",self.produto_id,self.armazenamento_id).sum(:quantidade)
         if estoque_total + self.quantidade  < 0
           errors.add(:base,"Estoque não pode ficar negativo")
         end
     end
-
   end
 end

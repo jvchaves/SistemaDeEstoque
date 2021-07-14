@@ -18,13 +18,17 @@ class MovimentacaosController < ApplicationController
   # GET /movimentacaos/1/edit
   def edit
   end
+  def verifica_saida(produto,deposito,quantidade,tipo)
+    if tipo = 'S'
+      @movimentacao = Movimentacao.where('produto_id = ? AND armazenamento_id = ?',produto, deposito).sum(:quantidade)
+    end
+  end
   def create_by_csv
     @estoques = CSV.parse(params[:csv].read,{col_sep:';',headers:true}) rescue nil
     @produtos = Produto.all
     @depositos = Armazenamento.all
 
     if @estoques.present?
-      binding.pry
       @estoques.each do |estoque|
         @produto = @produtos.where(nome:estoque['Produto'].downcase).first
         @deposito = @depositos.where(nome:estoque['Nome do deposito'].downcase).first
@@ -36,9 +40,9 @@ class MovimentacaosController < ApplicationController
           @deposito = Armazenamento.create({nome:estoque['Nome do deposito'].downcase})
           @deposito.save
         end
+          @movimentacao = Movimentacao.new({produto_id: @produto.id, armazenamento_id: @deposito.id, tipo: estoque['Tipo de Movimentacao'].upcase, quantidade: estoque['Quantidade'].to_i, data_movimentacao: estoque['Data'].to_date})
+          @movimentacao.save
 
-        @movimentacao = Movimentacao.new({produto_id: @produto.id, armazenamento_id: @deposito.id, tipo: estoque['Tipo de Movimentacao'].upcase, quantidade: estoque['Quantidade'].to_i, data_movimentacao: estoque['Data'].to_date})
-        @movimentacao.save
 
 
       end
@@ -51,7 +55,6 @@ class MovimentacaosController < ApplicationController
   def create
     @movimentacao = Movimentacao.new(movimentacao_params)
     @movimentacao.tipo = params[:tipo].upcase
-    # binding.pry
     @armazenamento = Armazenamento.where(nome: movimentacao_params[:armazenamento_id].downcase).first
     @movimentacao.data_movimentacao = Time.now.strftime("%d/%m/%Y")
     @produto = Produto.where(nome: movimentacao_params[:produto_id].downcase).first
@@ -63,7 +66,7 @@ class MovimentacaosController < ApplicationController
       @movimentacao.produto_id = @produto.id
     end
     if @armazenamento.present?
-      # binding.pry
+
       @movimentacao.armazenamento_id = @armazenamento.id
     else
       @armazenamento = Armazenamento.create({nome:movimentacao_params[:armazenamento_id].downcase})
@@ -82,18 +85,8 @@ class MovimentacaosController < ApplicationController
     end
   end
   def total_armazenado
-  # .group('name AS grouped_name, age')
-  binding.pry
-  @total = []
-  @movimentacoes = Movimentacao.all
-  @movimentacoes.each do |mov|
-    total = @movimentacoes.where('produto_id = ? AND armazenamento_id = ?',mov.produto_id,mov.armazenamento_id).sum(:quantidade)
-    @movimentacao
-    @total << [mov.produto.nome,total,mov.armazenamento.nome]
-    binding.pry
-  end
-  binding.pry
 
+  @movimentacoes = Movimentacao.joins(:produto).joins(:armazenamento).select('armazenamentos.nome,produtos.nome').group('armazenamentos.nome').group('produtos.nome').sum(:quantidade).to_a
 
   end
   # PATCH/PUT /movimentacaos/1 or /movimentacaos/1.json

@@ -6,11 +6,10 @@
   </thead>
   <tbody>
   <%@movimentacoes.each do |movimentacao| %>
-  <%#binding.pry %>
     <tr>
-      <td><%=movimentacao.armazenamento.nome %></td>
-      <td><%=movimentacao.produto.nome %></td>
-      <td><%=movimentacao.quantidade %></td>
+      <td><%=movimentacao[0][0] rescue nil %></td>
+      <td><%=movimentacao[0][1] rescue nil%></td>
+      <td><%=movimentacao[1] rescue nil%></td>
     </tr>
   <%end%>
   </tbody>

@@ -13960,3 +13960,1142 @@ Processing by ArmazenamentosController#index as HTML
 Completed 200 OK in 13ms (Views: 12.2ms | ActiveRecord: 0.2ms | Allocations: 5356)
 
 
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 20:30:30 -0300
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 22.1ms | Allocations: 16923)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 26.6ms | Allocations: 20409)
+Completed 200 OK in 30ms (Views: 27.4ms | ActiveRecord: 1.0ms | Allocations: 22055)
+
+
+Started GET "/movimentacaos/new" for 127.0.0.1 at 2021-07-13 20:30:32 -0300
+Processing by MovimentacaosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/new.html.erb within layouts/application
+  Rendered movimentacaos/_form.html.erb (Duration: 2.1ms | Allocations: 1151)
+  Rendered movimentacaos/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1294)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 5028)
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.0ms | Allocations: 6022)
+
+
+Started POST "/movimentacaos" for 127.0.0.1 at 2021-07-13 20:30:41 -0300
+Processing by MovimentacaosController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "movimentacao"=>{"produto_id"=>"Milho", "armazenamento_id"=>"deposito", "quantidade"=>"25000"}, "tipo"=>"S", "commit"=>"Create Movimentacao"}
+  [1m[36mArmazenamento Load (0.3ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:60:in `create'
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:62:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mArmazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 1 AND tipo = 'E')[0m
+  ↳ app/models/movimentacao.rb:17:in `verifica_estoque'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/new.html.erb within layouts/application
+  Rendered movimentacaos/_form.html.erb (Duration: 2.2ms | Allocations: 1179)
+  Rendered movimentacaos/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1302)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | Allocations: 4818)
+Completed 422 Unprocessable Entity in 22ms (Views: 7.8ms | ActiveRecord: 1.0ms | Allocations: 11674)
+
+
+Started GET "/movimentacaos/new" for 127.0.0.1 at 2021-07-13 20:30:56 -0300
+Processing by MovimentacaosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/new.html.erb within layouts/application
+  Rendered movimentacaos/_form.html.erb (Duration: 1.7ms | Allocations: 1142)
+  Rendered movimentacaos/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1265)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5.7ms | Allocations: 4844)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms | Allocations: 5308)
+
+
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 20:30:56 -0300
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 12.9ms | Allocations: 6063)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.8ms | Allocations: 9770)
+Completed 200 OK in 22ms (Views: 20.4ms | ActiveRecord: 0.6ms | Allocations: 10752)
+
+
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:31:00 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1184)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 4665)
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.0ms | Allocations: 5465)
+
+
+Started POST "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:31:07 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "csv"=>#<ActionDispatch::Http::UploadedFile:0x00007fdc20718de8 @tempfile=#<Tempfile:/tmp/RackMultipart20210713-9811-19ysgaz.csv>, @original_filename="movimentacao_de_estoque (2).csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv\"; filename=\"movimentacao_de_estoque (2).csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Save "}
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 2"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 3080)
+
+
+  
+NoMethodError (undefined method `id' for 1:Integer
+Did you mean?  i):
+  
+app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+app/controllers/movimentacaos_controller.rb:44:in `block in create_by_csv'
+app/controllers/movimentacaos_controller.rb:33:in `create_by_csv'
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:31:41 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1187)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 4670)
+Completed 200 OK in 9ms (Views: 7.1ms | Allocations: 6184)
+
+
+Started POST "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:31:49 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "csv"=>#<ActionDispatch::Http::UploadedFile:0x00007fdc10023f70 @tempfile=#<Tempfile:/tmp/RackMultipart20210713-9811-tia7a2.csv>, @original_filename="movimentacao_de_estoque (2).csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv\"; filename=\"movimentacao_de_estoque (2).csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Save "}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 2"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND deposito_id = 2)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 2.7ms | Allocations: 10563)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: deposito_id):
+  
+app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+app/controllers/movimentacaos_controller.rb:44:in `block in create_by_csv'
+app/controllers/movimentacaos_controller.rb:33:in `create_by_csv'
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:32:08 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 5.2ms | Allocations: 1187)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 4670)
+Completed 200 OK in 12ms (Views: 9.8ms | Allocations: 6204)
+
+
+Started POST "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:32:12 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "csv"=>#<ActionDispatch::Http::UploadedFile:0x000055fd06e75820 @tempfile=#<Tempfile:/tmp/RackMultipart20210713-9811-16wttiq.csv>, @original_filename="movimentacao_de_estoque (2).csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv\"; filename=\"movimentacao_de_estoque (2).csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Save "}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 2"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 2)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "soja"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 4"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 3)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+Redirected to http://localhost:3000/movimentacaos/total_armazenado
+Completed 302 Found in 114476ms (ActiveRecord: 2.7ms | Allocations: 38905)
+
+
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 20:34:07 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+  [1m[36mMovimentacao Load (0.2ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 1)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:95:in `block in total_armazenado'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `block in total_armazenado'
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `block in total_armazenado'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 2)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:95:in `block in total_armazenado'
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `block in total_armazenado'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `block in total_armazenado'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 3)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:95:in `block in total_armazenado'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `block in total_armazenado'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `block in total_armazenado'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 0.1ms | Allocations: 58)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 3577)
+Completed 200 OK in 15921ms (Views: 4.8ms | ActiveRecord: 1.4ms | Allocations: 82488)
+
+
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 20:34:30 -0300
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 12.4ms | Allocations: 6085)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 20.3ms | Allocations: 9665)
+Completed 200 OK in 21ms (Views: 20.0ms | ActiveRecord: 0.6ms | Allocations: 10131)
+
+
+Started GET "/movimentacaos/new" for 127.0.0.1 at 2021-07-13 20:34:46 -0300
+Processing by MovimentacaosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/new.html.erb within layouts/application
+  Rendered movimentacaos/_form.html.erb (Duration: 1.4ms | Allocations: 1149)
+  Rendered movimentacaos/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1366)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 4945)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.0ms | Allocations: 5424)
+
+
+Started POST "/movimentacaos" for 127.0.0.1 at 2021-07-13 20:34:58 -0300
+Processing by MovimentacaosController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "movimentacao"=>{"produto_id"=>"Milho", "armazenamento_id"=>"deposito", "quantidade"=>"2500"}, "tipo"=>"S", "commit"=>"Create Movimentacao"}
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:60:in `create'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:62:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mProduto Load (0.3ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 1 AND tipo = 'E')[0m
+  ↳ app/models/movimentacao.rb:17:in `verifica_estoque'
+  [1m[36mMovimentacao Create (0.2ms)[0m  [1m[32mINSERT INTO "movimentacaos" ("produto_id", "armazenamento_id", "tipo", "quantidade", "data_movimentacao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["produto_id", 1], ["armazenamento_id", 1], ["tipo", "S"], ["quantidade", -2500], ["data_movimentacao", "2021-07-13 00:00:00"], ["created_at", "2021-07-13 23:34:58.352215"], ["updated_at", "2021-07-13 23:34:58.352215"]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+Redirected to http://localhost:3000/movimentacaos/4
+Completed 302 Found in 17ms (ActiveRecord: 3.3ms | Allocations: 7075)
+
+
+Started GET "/movimentacaos/4" for 127.0.0.1 at 2021-07-13 20:34:58 -0300
+Processing by MovimentacaosController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMovimentacao Load (0.2ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" WHERE "movimentacaos"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:130:in `set_movimentacao'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/show.html.erb within layouts/application
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/show.html.erb:5
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/show.html.erb:10
+  Rendered movimentacaos/show.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1661)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | Allocations: 5240)
+Completed 200 OK in 9ms (Views: 6.4ms | ActiveRecord: 0.3ms | Allocations: 6378)
+
+
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 20:35:04 -0300
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 15.0ms | Allocations: 7835)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.4ms | Allocations: 11436)
+Completed 200 OK in 20ms (Views: 18.7ms | ActiveRecord: 0.6ms | Allocations: 12421)
+
+
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:47:08 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1187)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 4670)
+Completed 200 OK in 7ms (Views: 4.3ms | Allocations: 6184)
+
+
+Started POST "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:47:13 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "csv"=>#<ActionDispatch::Http::UploadedFile:0x00007fdc206f2210 @tempfile=#<Tempfile:/tmp/RackMultipart20210713-9811-1mxn7ve.csv>, @original_filename="movimentacao_de_estoque (2).csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv\"; filename=\"movimentacao_de_estoque (2).csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Save "}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 2"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 2)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "soja"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 4"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 3)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+Redirected to http://localhost:3000/movimentacaos/total_armazenado
+Completed 302 Found in 10913ms (ActiveRecord: 1.1ms | Allocations: 29220)
+
+
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 20:47:24 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+  [1m[36mMovimentacao Load (0.2ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `total_armazenado'
+  [1m[36mCACHE Movimentacao Load (0.0ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `total_armazenado'
+  [1m[36mCACHE Movimentacao Load (0.0ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ (pry):8:in `to_h'
+  [1m[36mCACHE Movimentacao Load (0.0ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `total_armazenado'
+  [1m[36mCACHE Movimentacao Load (0.0ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `total_armazenado'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/total_armazenado.html.erb:11
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/total_armazenado.html.erb:12
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/total_armazenado.html.erb:11
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/total_armazenado.html.erb:12
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/total_armazenado.html.erb:11
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/total_armazenado.html.erb:12
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 10.2ms | Allocations: 6051)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.1ms | Allocations: 9535)
+Completed 200 OK in 168272ms (Views: 14.0ms | ActiveRecord: 0.8ms | Allocations: 78903)
+
+
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:50:15 -0300
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 20:50:15 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1187)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 4670)
+Completed 200 OK in 6ms (Views: 5.0ms | Allocations: 6193)
+
+
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mMovimentacao Load (0.4ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 35.2ms | Allocations: 19832)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 39.0ms | Allocations: 23318)
+Completed 200 OK in 41ms (Views: 39.6ms | ActiveRecord: 2.9ms | Allocations: 24954)
+
+
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:50:17 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1184)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 4666)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.0ms | Allocations: 5466)
+
+
+Started POST "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 20:50:40 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "csv"=>#<ActionDispatch::Http::UploadedFile:0x00007fdc1d3cae78 @tempfile=#<Tempfile:/tmp/RackMultipart20210713-9811-1gul7c5.csv>, @original_filename="movimentacao_de_estoque (2).csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv\"; filename=\"movimentacao_de_estoque (2).csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Save "}
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 2"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 2)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "soja"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 4"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 3)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+Redirected to http://localhost:3000/movimentacaos/total_armazenado
+Completed 302 Found in 8ms (ActiveRecord: 0.6ms | Allocations: 4850)
+
+
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 20:50:40 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+  [1m[36mMovimentacao Load (0.2ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `total_armazenado'
+  [1m[36mCACHE Movimentacao Load (0.0ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `total_armazenado'
+  [1m[36mMovimentacao Load (0.2ms)[0m  [1m[34mSELECT armazenamento_id,produto_id FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:97:in `total_armazenado'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "movimentacaos"."armazenamento_id" AS movimentacaos_armazenamento_id, "movimentacaos"."produto_id" AS movimentacaos_produto_id FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ (pry):14:in `total_armazenado'
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 20:56:17 -0300
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1691)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 1775)
+Completed 500 Internal Server Error in 361387ms (ActiveRecord: 0.5ms | Allocations: 65265)
+
+
+  
+ActionView::Template::Error (undefined method `armazenamento' for [[1, 1], 0]:Array):
+     8:   <%@movimentacoes.each do |movimentacao| %>
+     9:   <%#binding.pry %>
+    10:     <tr>
+    11:       <td><%=movimentacao.armazenamento.nome %></td>
+    12:       <td><%=movimentacao.produto.nome %></td>
+    13:       <td><%=movimentacao.quantidade %></td>
+    14:     </tr>
+  
+app/views/movimentacaos/total_armazenado.html.erb:11
+app/views/movimentacaos/total_armazenado.html.erb:8:in `each'
+app/views/movimentacaos/total_armazenado.html.erb:8
+Started GET "/movimentacaos/4" for 127.0.0.1 at 2021-07-13 20:56:41 -0300
+Started GET "/movimentacaos/" for 127.0.0.1 at 2021-07-13 20:56:41 -0300
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.3ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 28.2ms | Allocations: 19998)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 31.8ms | Allocations: 23484)
+Completed 200 OK in 35ms (Views: 32.5ms | ActiveRecord: 2.4ms | Allocations: 25124)
+
+
+Processing by MovimentacaosController#index as HTML
+Processing by MovimentacaosController#show as HTML
+  Parameters: {"id"=>"4"}
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  ↳ app/controllers/movimentacaos_controller.rb:125:in `set_movimentacao'
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" WHERE "movimentacaos"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:125:in `set_movimentacao'
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  Rendering layout layouts/application.html.erb
+  ↳ app/views/movimentacaos/index.html.erb:18
+  Rendering movimentacaos/show.html.erb within layouts/application
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  ↳ app/views/movimentacaos/show.html.erb:5
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/show.html.erb:10
+  Rendered movimentacaos/show.html.erb within layouts/application (Duration: 15.7ms | Allocations: 10887)
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 46.1ms | Allocations: 25223)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 39.1ms | Allocations: 22874)
+Completed 200 OK in 56ms (Views: 40.0ms | ActiveRecord: 1.0ms | Allocations: 31935)
+
+
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 58.1ms | Allocations: 32397)
+Completed 200 OK in 61ms (Views: 58.8ms | ActiveRecord: 1.6ms | Allocations: 34426)
+
+
+Started GET "/movimentacaos/" for 127.0.0.1 at 2021-07-13 20:56:50 -0300
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 17.3ms | Allocations: 7681)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 21.2ms | Allocations: 11260)
+Completed 200 OK in 23ms (Views: 21.0ms | ActiveRecord: 0.7ms | Allocations: 11716)
+
+
+Started GET "/movimentacaos/new" for 127.0.0.1 at 2021-07-13 21:00:06 -0300
+Processing by MovimentacaosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/new.html.erb within layouts/application
+  Rendered movimentacaos/_form.html.erb (Duration: 1.5ms | Allocations: 1150)
+  Rendered movimentacaos/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1273)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 5028)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.0ms | Allocations: 6047)
+
+
+Started GET "/movimentacaos/new" for 127.0.0.1 at 2021-07-13 21:00:14 -0300
+Processing by MovimentacaosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/new.html.erb within layouts/application
+  Rendered movimentacaos/_form.html.erb (Duration: 1.6ms | Allocations: 1142)
+  Rendered movimentacaos/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1265)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 4843)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 5310)
+
+
+Started POST "/movimentacaos" for 127.0.0.1 at 2021-07-13 21:00:26 -0300
+Processing by MovimentacaosController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "movimentacao"=>{"produto_id"=>"soja", "armazenamento_id"=>"deposito 4\t", "quantidade"=>"2500"}, "tipo"=>"S", "commit"=>"Create Movimentacao"}
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 4\t"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:60:in `create'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "soja"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:62:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:74:in `create'
+  [1m[36mArmazenamento Create (0.2ms)[0m  [1m[32mINSERT INTO "armazenamentos" ("nome", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["nome", "deposito 4\t"], ["created_at", "2021-07-14 00:00:26.039255"], ["updated_at", "2021-07-14 00:00:26.039255"]]
+  ↳ app/controllers/movimentacaos_controller.rb:74:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:74:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 4 AND tipo = 'E')[0m
+  ↳ app/models/movimentacao.rb:17:in `verifica_estoque'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/new.html.erb within layouts/application
+  Rendered movimentacaos/_form.html.erb (Duration: 1.6ms | Allocations: 1177)
+  Rendered movimentacaos/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1300)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 4816)
+Completed 422 Unprocessable Entity in 26ms (Views: 5.7ms | ActiveRecord: 2.6ms | Allocations: 16286)
+
+
+Started GET "/" for 127.0.0.1 at 2021-07-13 21:00:34 -0300
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 125)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 3669)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.0ms | Allocations: 4264)
+
+
+Started GET "/" for 127.0.0.1 at 2021-07-13 21:00:35 -0300
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 118)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 3697)
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.0ms | Allocations: 4136)
+
+
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 21:00:43 -0300
+Processing by MovimentacaosController#index as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 17.1ms | Allocations: 7681)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 20.6ms | Allocations: 11273)
+Completed 200 OK in 21ms (Views: 20.2ms | ActiveRecord: 0.7ms | Allocations: 11729)
+
+
+Started POST "/movimentacaos" for 127.0.0.1 at 2021-07-13 21:01:28 -0300
+Processing by MovimentacaosController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "movimentacao"=>{"produto_id"=>"soja", "armazenamento_id"=>"deposito 4", "quantidade"=>"-2500"}, "tipo"=>"S", "commit"=>"Create Movimentacao"}
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 4"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:60:in `create'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "soja"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:62:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mProduto Load (0.3ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 3 AND tipo = 'E')[0m
+  ↳ app/models/movimentacao.rb:17:in `verifica_estoque'
+  [1m[36mMovimentacao Create (0.2ms)[0m  [1m[32mINSERT INTO "movimentacaos" ("produto_id", "armazenamento_id", "tipo", "quantidade", "data_movimentacao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["produto_id", 2], ["armazenamento_id", 3], ["tipo", "S"], ["quantidade", -2500], ["data_movimentacao", "2021-07-13 00:00:00"], ["created_at", "2021-07-14 00:01:28.122868"], ["updated_at", "2021-07-14 00:01:28.122868"]]
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/movimentacaos_controller.rb:80:in `block in create'
+Redirected to http://localhost:3000/movimentacaos/5
+Completed 302 Found in 18ms (ActiveRecord: 2.5ms | Allocations: 8677)
+
+
+Started GET "/movimentacaos/5" for 127.0.0.1 at 2021-07-13 21:01:28 -0300
+Processing by MovimentacaosController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mMovimentacao Load (0.2ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos" WHERE "movimentacaos"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:125:in `set_movimentacao'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/show.html.erb within layouts/application
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/show.html.erb:5
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/show.html.erb:10
+  Rendered movimentacaos/show.html.erb within layouts/application (Duration: 4.4ms | Allocations: 1661)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 5241)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.5ms | Allocations: 6281)
+
+
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 21:01:34 -0300
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 19.7ms | Allocations: 9522)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 23.5ms | Allocations: 13631)
+Completed 200 OK in 25ms (Views: 23.3ms | ActiveRecord: 0.7ms | Allocations: 14092)
+
+
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 21:01:39 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1185)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 4666)
+Completed 200 OK in 4ms (Views: 3.9ms | ActiveRecord: 0.0ms | Allocations: 5465)
+
+
+Started POST "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 21:01:44 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "csv"=>#<ActionDispatch::Http::UploadedFile:0x00007fdc204f3568 @tempfile=#<Tempfile:/tmp/RackMultipart20210713-9811-2dvqyz.csv>, @original_filename="movimentacao_de_estoque (2).csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv\"; filename=\"movimentacao_de_estoque (2).csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Save "}
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 2"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 2)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "soja"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 4"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 3)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+Redirected to http://localhost:3000/movimentacaos/total_armazenado
+Completed 302 Found in 12ms (ActiveRecord: 0.8ms | Allocations: 4755)
+
+
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 21:01:44 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "movimentacaos"."armazenamento_id" AS movimentacaos_armazenamento_id, "movimentacaos"."produto_id" AS movimentacaos_produto_id FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1691)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 1775)
+Completed 500 Internal Server Error in 13302ms (ActiveRecord: 0.2ms | Allocations: 14146)
+
+
+  
+ActionView::Template::Error (undefined method `armazenamento' for [[1, 1], 0]:Array):
+     8:   <%@movimentacoes.each do |movimentacao| %>
+     9:   <%#binding.pry %>
+    10:     <tr>
+    11:       <td><%=movimentacao.armazenamento.nome %></td>
+    12:       <td><%=movimentacao.produto.nome %></td>
+    13:       <td><%=movimentacao.quantidade %></td>
+    14:     </tr>
+  
+app/views/movimentacaos/total_armazenado.html.erb:11
+app/views/movimentacaos/total_armazenado.html.erb:8:in `each'
+app/views/movimentacaos/total_armazenado.html.erb:8
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 21:02:18 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 21:02:22 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "movimentacaos"."armazenamento_id" AS movimentacaos_armazenamento_id, "movimentacaos"."produto_id" AS movimentacaos_produto_id FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "movimentacaos"."armazenamento_id" AS movimentacaos_armazenamento_id, "movimentacaos"."produto_id" AS movimentacaos_produto_id FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ (pry):15:in `total_armazenado'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "movimentacaos"."armazenamento_id" AS movimentacaos_armazenamento_id, "movimentacaos"."produto_id" AS movimentacaos_produto_id FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ (pry):16:in `total_armazenado'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1690)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 1774)
+Completed 500 Internal Server Error in 74505ms (ActiveRecord: 0.6ms | Allocations: 39959)
+
+
+  
+ActionView::Template::Error (undefined method `armazenamento' for [[1, 1], 0]:Array):
+     8:   <%@movimentacoes.each do |movimentacao| %>
+     9:   <%#binding.pry %>
+    10:     <tr>
+    11:       <td><%=movimentacao.armazenamento.nome %></td>
+    12:       <td><%=movimentacao.produto.nome %></td>
+    13:       <td><%=movimentacao.quantidade %></td>
+    14:     </tr>
+  
+app/views/movimentacaos/total_armazenado.html.erb:11
+app/views/movimentacaos/total_armazenado.html.erb:8:in `each'
+app/views/movimentacaos/total_armazenado.html.erb:8
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 21:03:33 -0300
+Processing by MovimentacaosController#index as HTML
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mMovimentacao Load (0.2ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  [1m[36mMovimentacao Load (0.2ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 57.3ms | Allocations: 29671)
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 61.7ms | Allocations: 32471)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 68.2ms | Allocations: 37886)
+Completed 200 OK in 69ms (Views: 68.9ms | ActiveRecord: 2.7ms | Allocations: 38403)
+
+
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 71.8ms | Allocations: 39762)
+Completed 200 OK in 76ms (Views: 73.4ms | ActiveRecord: 0.9ms | Allocations: 41957)
+
+
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 21:03:43 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 14.4ms | Allocations: 1479)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | Allocations: 5154)
+Completed 200 OK in 21ms (Views: 19.6ms | Allocations: 7309)
+
+
+Started POST "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 21:03:47 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "csv"=>#<ActionDispatch::Http::UploadedFile:0x00007fdc207fa860 @tempfile=#<Tempfile:/tmp/RackMultipart20210713-9811-1ditb1r.csv>, @original_filename="movimentacao_de_estoque (2).csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv\"; filename=\"movimentacao_de_estoque (2).csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Save "}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 2"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 2)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "soja"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 4"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 3)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+Redirected to http://localhost:3000/movimentacaos/total_armazenado
+Completed 302 Found in 20ms (ActiveRecord: 2.1ms | Allocations: 11839)
+
+
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 21:03:47 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "movimentacaos"."armazenamento_id" AS movimentacaos_armazenamento_id, "movimentacaos"."produto_id" AS movimentacaos_produto_id FROM "movimentacaos" GROUP BY "movimentacaos"."armazenamento_id", "movimentacaos"."produto_id"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 137285.3ms | Allocations: 26766)
+  Rendered layout layouts/application.html.erb (Duration: 137285.5ms | Allocations: 26850)
+Completed 500 Internal Server Error in 147024ms (ActiveRecord: 0.2ms | Allocations: 39409)
+
+
+  
+ActionView::Template::Error (undefined method `armazenamento' for [[1, 1], 0]:Array):
+     8:   <%@movimentacoes.each do |movimentacao| %>
+     9:   <%binding.pry %>
+    10:     <tr>
+    11:       <td><%=movimentacao.armazenamento.nome %></td>
+    12:       <td><%=movimentacao.produto.nome %></td>
+    13:       <td><%=movimentacao.quantidade %></td>
+    14:     </tr>
+  
+app/views/movimentacaos/total_armazenado.html.erb:11
+app/views/movimentacaos/total_armazenado.html.erb:8:in `each'
+app/views/movimentacaos/total_armazenado.html.erb:8
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 21:08:05 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 21:08:09 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ (pry):20:in `total_armazenado'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "armazenamento"."nome" AS armazenamento_nome, "produto"."nome" AS produto_nome FROM "movimentacaos" INNER JOIN "produtos" ON "produtos"."id" = "movimentacaos"."produto_id" INNER JOIN "armazenamentos" ON "armazenamentos"."id" = "movimentacaos"."armazenamento_id" GROUP BY "armazenamento"."nome", "produto"."nome"[0m
+  ↳ (pry):20:in `total_armazenado'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "armazenamentos"."nome" AS armazenamentos_nome, "produtos"."nome" AS produtos_nome FROM "movimentacaos" INNER JOIN "produtos" ON "produtos"."id" = "movimentacaos"."produto_id" INNER JOIN "armazenamentos" ON "armazenamentos"."id" = "movimentacaos"."armazenamento_id" GROUP BY "armazenamentos"."nome", "produtos"."nome"[0m
+  ↳ (pry):21:in `total_armazenado'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "armazenamento"."nome" AS armazenamento_nome, "produto"."nome" AS produto_nome FROM "movimentacaos" INNER JOIN "produtos" ON "produtos"."id" = "movimentacaos"."produto_id" INNER JOIN "armazenamentos" ON "armazenamentos"."id" = "movimentacaos"."armazenamento_id" GROUP BY "armazenamento"."nome", "produto"."nome"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+Completed 500 Internal Server Error in 182688ms (ActiveRecord: 2.8ms | Allocations: 33189)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: armazenamento.nome):
+  
+app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.2ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 40.8ms | Allocations: 22758)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 48.7ms | Allocations: 26245)
+Completed 200 OK in 52ms (Views: 49.4ms | ActiveRecord: 2.4ms | Allocations: 28016)
+
+
+Started GET "/movimentacaos" for 127.0.0.1 at 2021-07-13 21:11:38 -0300
+Processing by MovimentacaosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/index.html.erb within layouts/application
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mMovimentacao Load (0.1ms)[0m  [1m[34mSELECT "movimentacaos".* FROM "movimentacaos"[0m
+  ↳ app/views/movimentacaos/index.html.erb:18
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  [1m[36mCACHE Produto Load (0.0ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:20
+  [1m[36mCACHE Armazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/movimentacaos/index.html.erb:21
+  Rendered movimentacaos/index.html.erb within layouts/application (Duration: 34.4ms | Allocations: 21478)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 37.7ms | Allocations: 24963)
+Completed 200 OK in 40ms (Views: 38.3ms | ActiveRecord: 2.0ms | Allocations: 26597)
+
+
+Started GET "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 21:11:40 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/create_by_csv.html.erb within layouts/application
+  Rendered movimentacaos/create_by_csv.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1184)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | Allocations: 4666)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 5466)
+
+
+Started POST "/movimentacaos/create_by_csv" for 127.0.0.1 at 2021-07-13 21:11:44 -0300
+Processing by MovimentacaosController#create_by_csv as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "csv"=>#<ActionDispatch::Http::UploadedFile:0x00007fdc1cdc2300 @tempfile=#<Tempfile:/tmp/RackMultipart20210713-9811-1ptakxy.csv>, @original_filename="movimentacao_de_estoque (2).csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv\"; filename=\"movimentacao_de_estoque (2).csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Save "}
+  [1m[36mProduto Load (0.2ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "milho"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.1ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 2"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 1 AND armazenamento_id = 2)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+  [1m[36mProduto Load (0.1ms)[0m  [1m[34mSELECT "produtos".* FROM "produtos" WHERE "produtos"."nome" = ? ORDER BY "produtos"."id" ASC LIMIT ?[0m  [["nome", "soja"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:34:in `block in create_by_csv'
+  [1m[36mArmazenamento Load (0.0ms)[0m  [1m[34mSELECT "armazenamentos".* FROM "armazenamentos" WHERE "armazenamentos"."nome" = ? ORDER BY "armazenamentos"."id" ASC LIMIT ?[0m  [["nome", "deposito 4"], ["LIMIT", 1]]
+  ↳ app/controllers/movimentacaos_controller.rb:35:in `block in create_by_csv'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") FROM "movimentacaos" WHERE (produto_id = 2 AND armazenamento_id = 3)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:23:in `verifica_saida'
+Redirected to http://localhost:3000/movimentacaos/total_armazenado
+Completed 302 Found in 8ms (ActiveRecord: 0.5ms | Allocations: 4850)
+
+
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 21:11:44 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "armazenamentos"."nome" AS armazenamentos_nome, "produtos"."nome" AS produtos_nome FROM "movimentacaos" INNER JOIN "produtos" ON "produtos"."id" = "movimentacaos"."produto_id" INNER JOIN "armazenamentos" ON "armazenamentos"."id" = "movimentacaos"."armazenamento_id" GROUP BY "armazenamentos"."nome", "produtos"."nome"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 119012.7ms | Allocations: 40350)
+  Rendered layout layouts/application.html.erb (Duration: 119012.9ms | Allocations: 40434)
+Completed 500 Internal Server Error in 123718ms (ActiveRecord: 0.2ms | Allocations: 52918)
+
+
+  
+ActionView::Template::Error (undefined method `armazenamento' for [["deposito", "milho"], 0]:Array):
+     8:   <%@movimentacoes.each do |movimentacao| %>
+     9:   <%binding.pry %>
+    10:     <tr>
+    11:       <td><%=movimentacao.armazenamento.nome %></td>
+    12:       <td><%=movimentacao.produto.nome %></td>
+    13:       <td><%=movimentacao.quantidade %></td>
+    14:     </tr>
+  
+app/views/movimentacaos/total_armazenado.html.erb:11
+app/views/movimentacaos/total_armazenado.html.erb:8:in `each'
+app/views/movimentacaos/total_armazenado.html.erb:8
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 21:13:53 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "armazenamentos"."nome" AS armazenamentos_nome, "produtos"."nome" AS produtos_nome FROM "movimentacaos" INNER JOIN "produtos" ON "produtos"."id" = "movimentacaos"."produto_id" INNER JOIN "armazenamentos" ON "armazenamentos"."id" = "movimentacaos"."armazenamento_id" GROUP BY "armazenamentos"."nome", "produtos"."nome"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 0.3ms | Allocations: 271)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 3983)
+Completed 200 OK in 4237ms (Views: 5.7ms | ActiveRecord: 0.4ms | Allocations: 17250)
+
+
+Started GET "/movimentacaos/total_armazenado" for 127.0.0.1 at 2021-07-13 21:14:24 -0300
+Processing by MovimentacaosController#total_armazenado as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("movimentacaos"."quantidade") AS sum_quantidade, "armazenamentos"."nome" AS armazenamentos_nome, "produtos"."nome" AS produtos_nome FROM "movimentacaos" INNER JOIN "produtos" ON "produtos"."id" = "movimentacaos"."produto_id" INNER JOIN "armazenamentos" ON "armazenamentos"."id" = "movimentacaos"."armazenamento_id" GROUP BY "armazenamentos"."nome", "produtos"."nome"[0m
+  ↳ app/controllers/movimentacaos_controller.rb:94:in `total_armazenado'
+  Rendering layout layouts/application.html.erb
+  Rendering movimentacaos/total_armazenado.html.erb within layouts/application
+  Rendered movimentacaos/total_armazenado.html.erb within layouts/application (Duration: 0.3ms | Allocations: 276)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 3988)
+Completed 200 OK in 19ms (Views: 5.9ms | ActiveRecord: 1.0ms | Allocations: 10030)
+
+
