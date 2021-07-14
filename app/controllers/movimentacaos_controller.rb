@@ -1,6 +1,6 @@
 class MovimentacaosController < ApplicationController
   before_action :set_movimentacao, only: %i[ show edit update destroy ]
-
+  require 'csv'
   # GET /movimentacaos or /movimentacaos.json
   def index
     @movimentacaos = Movimentacao.all
@@ -22,7 +22,7 @@ class MovimentacaosController < ApplicationController
     @estoques = CSV.parse(params[:csv].read,{col_sep:';',headers:true}) rescue nil
     @produtos = Produto.all
     @depositos = Armazenamento.all
-
+    binding.pry
     if @estoques.present?
       @estoques.each do |estoque|
         @produto = @produtos.where(nome:estoque['Produto'].downcase).first
@@ -51,7 +51,7 @@ class MovimentacaosController < ApplicationController
     @movimentacao = Movimentacao.new(movimentacao_params)
     @movimentacao.tipo = params[:tipo].upcase
     @armazenamento = Armazenamento.where(nome: movimentacao_params[:armazenamento_id].downcase).first
-    @movimentacao.data_movimentacao = Time.now.strftime("%d/%m/%Y")
+    @movimentacao.data_movimentacao = params[:data].to_date + 3.hours
     @produto = Produto.where(nome: movimentacao_params[:produto_id].downcase).first
     if @produto.present?
       @movimentacao.produto_id = @produto.id
@@ -80,7 +80,7 @@ class MovimentacaosController < ApplicationController
     end
   end
   def total_armazenado
-  @movimentacoes = Movimentacao.joins(:produto).joins(:armazenamento).select('armazenamentos.nome,produtos.nome').group('armazenamentos.nome').group('produtos.nome').sum(:quantidade).to_a.order('sum(movimentacos.quantidade) desc')
+  @movimentacoes = Movimentacao.joins(:produto).joins(:armazenamento).select('armazenamentos.nome,produtos.nome').group('armazenamentos.nome').group('produtos.nome').sum(:quantidade).to_a
 
   end
   # PATCH/PUT /movimentacaos/1 or /movimentacaos/1.json
@@ -114,6 +114,6 @@ class MovimentacaosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movimentacao_params
-      params.require(:movimentacao).permit(:produto_id, :armazenamento_id, :tipo, :quantidade, :csv)
+      params.require(:movimentacao).permit(:produto_id, :armazenamento_id, :tipo, :quantidade, :csv, :data)
     end
 end
