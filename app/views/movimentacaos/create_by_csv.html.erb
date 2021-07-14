@@ -1,11 +1,18 @@
 <%= form_with url: "/movimentacaos/create_by_csv",method: :post do |form| %>
+  <div class="form-group col-md-5">
+    <%form.label 'Upload Arquivo CSV',:class => 'control-label'%>
+    <div class="custom-file">
+      <%= form.file_field :csv, multiple: false, class: "custom-file-input"%>
+      <label class="custom-file-label" for="customFile">Escolha Um Arquivo CSV</label>
+    </div>
+  </div>
 
-  <div class="field">
-    <%form.label 'Upload Arquivo CSV' %>
-    <%= form.file_field :csv, multiple: false%>
-    <label class="custom-file-label" for="customFile">Escolha Um Arquivo CSV</label>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= form.submit 'Criar', :class => 'btn btn-primary' %>
+      <%= link_to 'Voltar', movimentacaos_path, :class => 'btn btn-default' %>
+    </div>
   </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
 <%end %>

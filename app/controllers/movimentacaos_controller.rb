@@ -85,6 +85,7 @@ class MovimentacaosController < ApplicationController
   # PATCH/PUT /movimentacaos/1 or /movimentacaos/1.json
   def update
     respond_to do |format|
+      @movimentacao.data_movimentacao = params[:data].to_date + 3.hours if params[:data].present?
       @movimentacao.tipo = params[:tipo].upcase
       if @movimentacao.update(movimentacao_params)
         format.html { redirect_to @movimentacao, notice: "Movimentação Atualizada com Sucesso." }

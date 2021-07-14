@@ -10,7 +10,6 @@ class Movimentacao < ApplicationRecord
       max_valido = '31/01/2021'
       min_valido = min_valido.to_datetime
       max_valido = max_valido.to_datetime + 23.hours + 59.minute + 59.second
-    # binding.pry
     if self.data_movimentacao >= min_valido and self.data_movimentacao <= max_valido
       return true
     else

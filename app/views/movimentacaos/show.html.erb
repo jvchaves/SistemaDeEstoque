@@ -22,6 +22,6 @@
   <strong>Quantidade:</strong>
   <%= @movimentacao.quantidade rescue nil%>
 </p>
+<%= link_to 'Editar', edit_movimentacao_path(@movimentacao),method: :get, :class => 'btn btn-primary btn-xs' %>
+<%= link_to 'Voltar', movimentacaos_path, :class => 'btn btn-default' %>
 
-<%= link_to 'Edit', edit_movimentacao_path(@movimentacao) %> |
-<%= link_to 'Back', movimentacaos_path %>

@@ -4,6 +4,6 @@
   <strong>Nome:</strong>
   <%= @armazenamento.nome %>
 </p>
+<%= link_to 'Editar', edit_armazenamento_path(@armazenamento),method: :get, :class => 'btn btn-primary btn-xs' %>
+<%= link_to 'Voltar', armazenamentos_path, :class => 'btn btn-default' %>
 
-<%= link_to 'Edit', edit_armazenamento_path(@armazenamento) %> |
-<%= link_to 'Back', armazenamentos_path %>

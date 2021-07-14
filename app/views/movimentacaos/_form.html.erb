@@ -11,31 +11,35 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group col-md-3">
     <%= form.label :produto_id %>
-    <%= form.text_field :produto_id, required: true%>
+    <%= form.text_field :produto_id,required: true %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-md-3">
     <%= form.label :armazenamento_id %>
     <%= form.text_field :armazenamento_id, required: true%>
   </div>
-  <div class="form-group col-sm-2">
-    <%= label_tag "Data de" %>
+  <div class="form-group col-md-3">
+    <%= label_tag "Data de Movimentação" %>
     <%= date_field_tag :data, params[:data],class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-md-3">
     <%= form.label :tipo %>
     <%= select_tag(:tipo, options_for_select([['ENTRADA', 'E'], ['SAIDA', 'S']]), required: true) %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-md-3">
     <%= form.label :quantidade %>
     <%= form.number_field :quantidade, required: true %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= form.submit 'Criar Movimentação', :class => 'btn btn-primary' %>
+      <%= link_to nil, movimentacaos_path, :class => 'btn btn-default' %>
+    </div>
   </div>
+
 <% end %>

@@ -1,8 +1,15 @@
 <h1>Seja Bem-Vindo</h1>
-
-<%= link_to 'Produtos',produtos_path, method: :get %>
-</br>
-<%= link_to 'Armazenamento',armazenamentos_path, method: :get %>
-</br>
-<%= link_to 'Movimentações',movimentacaos_path, method: :get%>
-
+<div class="row">
+  <div class="form-group">
+    <%= link_to 'Produtos',produtos_path, method: :get, :class => 'btn btn-primary' %>
+  </div>
+  <div class="form-group col-sm-1">
+    <%= link_to 'Armazenamento',armazenamentos_path, method: :get, :class => 'btn btn-success' %>
+  </div>
+  <div class="form-group col-sm-1">
+   <%= link_to 'Movimentações',movimentacaos_path, method: :get, :class => 'btn btn-danger'%>
+  </div>
+  <div class="form-group col-sm-1">
+   <%= link_to 'Total Armazenado',movimentacaos_total_armazenado_path, method: :get, :class => 'btn btn-dark'%>
+  </div>
+</div>
