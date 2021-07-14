@@ -18,11 +18,6 @@ class MovimentacaosController < ApplicationController
   # GET /movimentacaos/1/edit
   def edit
   end
-  def verifica_saida(produto,deposito,quantidade,tipo)
-    if tipo = 'S'
-      @movimentacao = Movimentacao.where('produto_id = ? AND armazenamento_id = ?',produto, deposito).sum(:quantidade)
-    end
-  end
   def create_by_csv
     @estoques = CSV.parse(params[:csv].read,{col_sep:';',headers:true}) rescue nil
     @produtos = Produto.all
@@ -85,8 +80,8 @@ class MovimentacaosController < ApplicationController
     end
   end
   def total_armazenado
-
-  @movimentacoes = Movimentacao.joins(:produto).joins(:armazenamento).select('armazenamentos.nome,produtos.nome').group('armazenamentos.nome').group('produtos.nome').sum(:quantidade).to_a
+    binding.pry
+  @movimentacoes = Movimentacao.joins(:produto).joins(:armazenamento).select('armazenamentos.nome,produtos.nome').group('armazenamentos.nome').group('produtos.nome').sum(:quantidade).to_a.order('sum(movimentacos.quantidade) desc')
 
   end
   # PATCH/PUT /movimentacaos/1 or /movimentacaos/1.json
