@@ -80,7 +80,6 @@ class MovimentacaosController < ApplicationController
     end
   end
   def total_armazenado
-    binding.pry
   @movimentacoes = Movimentacao.joins(:produto).joins(:armazenamento).select('armazenamentos.nome,produtos.nome').group('armazenamentos.nome').group('produtos.nome').sum(:quantidade).to_a.order('sum(movimentacos.quantidade) desc')
 
   end
