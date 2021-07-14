@@ -2,10 +2,10 @@ class CsvController < ApplicationController
   require 'csv'
   def exportaMovimentacao
     @movimentacoes = Movimentacao.all
-    @cabecalho = ['Nome do deposito','Data','Tipo de movimentacao','Nome do produto','Quantidade do produto']
     if @movimentacoes.present?
+      cabecalho = ['Nome do deposito','Data','Tipo de movimentacao','Nome do produto','Quantidade do produto']
       @exportar = CSV.generate(col_sep: ';') do |csv|
-        csv << @cabecalho
+        csv << cabecalho
         @movimentacoes.each do |movimentacao|
           csv << [movimentacao.armazenamento.nome,movimentacao.data_movimentacao.strftime("%d/%m/%Y").to_date,movimentacao.tipo,movimentacao.produto.nome,movimentacao.quantidade]
         end
